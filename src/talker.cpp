@@ -3,7 +3,7 @@
  *  @author  Karan Vivek Bhargava
  *  @copyright MIT License
  *
- *  @brief ENPM808X, Midsemester project
+ *  @brief Assignment to implement ROS nodes
  *
  *  @section DESCRIPTION
  *
@@ -18,6 +18,15 @@
 
 /**
  * This tutorial demonstrates simple sending of messages over the ROS system.
+ */
+
+/**
+ * @brief      main function
+ *
+ * @param[in]  argc  The argc
+ * @param      argv  The argv
+ *
+ * @return     nothing
  */
 int main(int argc, char **argv) {
   /**

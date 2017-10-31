@@ -3,7 +3,7 @@
  *  @author  Karan Vivek Bhargava
  *  @copyright MIT License
  *
- *  @brief ENPM808X, Midsemester project
+ *  @brief ENPM808X, Assignment to implement ROS nodes
  *
  *  @section DESCRIPTION
  *
@@ -18,10 +18,24 @@
 /**
  * This tutorial demonstrates simple receipt of messages over the ROS system.
  */
+
+/**
+ * @brief      Callback on the chatter topic
+ *
+ * @param[in]  msg   The message
+ */
 void chatterCallback(const std_msgs::String::ConstPtr& msg) {
   ROS_INFO("I heard: [%s]", msg->data.c_str());
 }
 
+/**
+ * @brief      main function
+ *
+ * @param[in]  argc  The argc
+ * @param      argv  The argv
+ *
+ * @return     nothing
+ */
 int main(int argc, char **argv) {
   /**
    * The ros::init() function needs to see argc and argv so that it can perform
