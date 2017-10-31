@@ -1,72 +1,53 @@
-<h1 align=center> Beginner Tutorials - Publisher / Subcriber </h1>
+<h1 align=center> ROS Beginner Tutorial - Publisher / Subcriber </h1>
 <p align="center">
 <a href="https://travis-ci.org/karanvivekbhargava/beginner_tutorials">
 <img src="https://travis-ci.org/karanvivekbhargava/beginner_tutorials.svg?branch=master">
 </a>
-<a href='https://coveralls.io/github/karanvivekbhargava/beginner_tutorials?branch=master'><img src='https://coveralls.io/repos/github/karanvivekbhargava/beginner_tutorials/badge.svg?branch=master'/></a>
 <a href='https://opensource.org/licenses/MIT'><img src='https://img.shields.io/badge/License-MIT-brightgreen.svg'/></a>
 </p>
 
 ## Project Overview
 
-This is a basic publisher and subscriber in ROS.
-
-## Feature List
-* Talker
-* Listener
----
+This is a basic publisher and subscriber in ROS for ENPM808X. It has two nodes viz.
+* Talker (`src/talker.cpp`)
+* Listener (`src/listener.cpp`)
 
 ## Dependencies
 
-The butler software stack has the following dependencies:
-* cmake
-* googletest
-* opencv
+These ROS nodes are made to be used on systems which have:
+* ROS Kinetic
+* Ubuntu 16.04
 
-To install opencv, follow the instructions on [link](https://docs.opencv.org/trunk/d7/d9f/tutorial_linux_install.html)
+To install ROS, follow the instructions on this [link](http://wiki.ros.org/kinetic/Installation)
 
-## How to build - standard install via command-line
+## How to build
 ```
-git clone --recursive https://github.com/karanvivekbhargava/robot-butler-enpm808x
-cd <path to repository>
-mkdir build
-cd build
-cmake ..
-make
+mkdir -p ~/catkin_ws/src
+cd ~/catkin_ws/
+catkin_make
+source devel/setup.bash
+cd src/
+git clone --recursive https://github.com/karanvivekbhargava/beginner_tutorials.git
+cd ..
+catkin_make
 ```
 
 ## How to run demo
 
-After following the installation instructions above, you can try three different images from the data folder by specifying the argument with the program
-
-To run for image_left.jpg, kindly enter the function below
+1. After following the installation instructions above, you can either run all of them using roslaunch by typing the following command in the terminal. It will start both the talker and the listener nodes
 ```
-./app/shell-app left
-```
-To run for image_center.jpg, kindly enter the function below
-```
-./app/shell-app center
-```
-To run for image_right.jpg, kindly enter the function below
-```
-./app/shell-app right
+roslaunch beginner_tutorials service.launch
 ```
 
-## How to run tests
-
-After following the building instructions, run the command below
+2. If you'd like to run the nodes separately, then run roscore in the terminal as given below
 ```
-./test/cpp-test
+roscore
 ```
-
-## How to generate documentation
-
-Although the repository contains the documentation, if you'd still like to generate it then follow the instructions below.
-
+To run talker, enter the command below in a new terminal window.
 ```
-sudo apt-get install doxygen
-sudo apt-get install doxywizard
-doxywizard
+rosrun beginner_tutorials talker
 ```
-
-Once doxywizard is open, select the workspace as the repository. Fill in the details as required and set the source code folder to the repository as well. Create a new folder in the repository and select that as the destination directory. Proceed with the default settings and generate the documentation.
+To run listener, enter the command below in a new terminal window.
+```
+rosrun beginner_tutorials listener
+```
