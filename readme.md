@@ -1,8 +1,5 @@
 <h1 align=center> ROS Beginner Tutorial - Publisher / Subcriber </h1>
 <p align="center">
-<a href="https://travis-ci.org/karanvivekbhargava/beginner_tutorials">
-<img src="https://travis-ci.org/karanvivekbhargava/beginner_tutorials.svg?branch=master">
-</a>
 <a href='https://opensource.org/licenses/MIT'><img src='https://img.shields.io/badge/License-MIT-brightgreen.svg'/></a>
 </p>
 
