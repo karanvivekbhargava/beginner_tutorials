@@ -1,0 +1,5 @@
+# Incoming parameter of the service.
+string text
+---
+# Response of the service.
+bool response
