@@ -63,6 +63,16 @@ int main(int argc, char **argv) {
    */
   ros::init(argc, argv, "talker");
 
+  // set default frequency of node
+  int freq = 10;
+
+  // Check if we have two arguments
+  if (argc == 2) {
+    // If we have an argument passed in, set the frequency
+    ROS_DEBUG_STREAM("Argument is " << argv[1]);
+    freq = atoi(argv[1]);
+  }
+
   /**
    * NodeHandle is the main access point to communications with the ROS system.
    * The first NodeHandle constructed will fully initialize this node, and the last
@@ -91,7 +101,7 @@ int main(int argc, char **argv) {
 
   auto server = n.advertiseService("change_text", changeText);
 
-  ros::Rate loop_rate(10);
+  ros::Rate loop_rate(freq);
 
   /**
    * A count of how many messages we have sent. This is used to create
