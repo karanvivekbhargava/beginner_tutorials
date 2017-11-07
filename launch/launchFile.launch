@@ -1,4 +1,7 @@
 <launch>
+    <env name="ROSCONSOLE_CONFIG_FILE"
+    value="$(find beginner_tutorials)/config/custom_rosconsole.conf"/>
+
     <arg name="freq" default="10"/>
 
     <node
