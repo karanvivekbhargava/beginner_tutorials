@@ -15,6 +15,28 @@
 #include <sstream>
 #include "ros/ros.h"
 #include "std_msgs/String.h"
+#include "beginner_tutorials/change_text.h"
+
+// Initialize the base string to print
+std::string strMsg = "Stranger Things | ";
+
+/**
+ * @brief      changeText
+ *
+ * @param      request  The request
+ * @param      resp     The response
+ *
+ * @return     boolean value of success
+ */
+bool changeText(beginner_tutorials::change_text::Request& request,
+                           beginner_tutorials::change_text::Response& resp) {
+  resp.textop = request.textip;
+  strMsg = resp.textop + " | ";
+  // Warn that the message being published is changed
+  ROS_WARN_STREAM("Changing the message being published...");
+
+  return true;
+}
 
 /**
  * This tutorial demonstrates simple sending of messages over the ROS system.
@@ -66,6 +88,9 @@ int main(int argc, char **argv) {
    * buffer up before throwing some away.
    */
   auto chatter_pub = n.advertise<std_msgs::String>("chatter", 1000);
+
+  auto server = n.advertiseService("change_text", changeText);
+
   ros::Rate loop_rate(10);
 
   /**
@@ -80,7 +105,7 @@ int main(int argc, char **argv) {
     std_msgs::String msg;
 
     std::stringstream ss;
-    ss << "Stranger Things " << count;
+    ss << strMsg << count;
     msg.data = ss.str();
     ROS_INFO("%s", msg.data.c_str());
 

@@ -1,5 +1,5 @@
 # Incoming parameter of the service.
-string text
+string textip
 ---
 # Response of the service.
-bool response
+string textop
