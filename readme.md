@@ -33,9 +33,13 @@ catkin_make
 
 ## How to run demo
 
-1. After following the installation instructions above, you can either run all of them using roslaunch by typing the following command in the terminal. It will start both the talker and the listener nodes
+1. After following the installation instructions above, you can either run all of them using roslaunch by typing the following command in the terminal. It will start both the talker and the listener nodes.
 ```
 roslaunch beginner_tutorials launchFile.launch
+```
+You can optionally run the following to change the frequency of the publisher. In the following command replace 200 with any integer more than one.
+```
+roslaunch beginner_tutorials launchFile.launch freq:=200
 ```
 
 2. If you'd like to run the nodes separately, then run roscore in the terminal as given below
@@ -51,7 +55,19 @@ To run listener, enter the command below in a new terminal window.
 rosrun beginner_tutorials listener
 ```
 
-3. If you'd like to run the service, type the following in a new terminal after starting roscore and talker from the methods above.
+## Service
+
+The talker (publisher) has a service to change the message.
+
+If you'd like to run the service, type the following in a new terminal after starting roscore and talker from the methods above. It will change the publisher message to "sample text" in the example below.
 ```
 rosservice call /change_text "sample text"
+```
+
+## Logging
+
+To see the logger messages in the rqt_console GUI, run the command below after running the roscore, talker and listener nodes from the instructions above.
+
+```
+rosrun rqt_console rqt_console
 ```
