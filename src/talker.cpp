@@ -18,7 +18,7 @@
 #include "beginner_tutorials/change_text.h"
 
 // Initialize the base string to print
-std::string strMsg = "Stranger Things | ";
+extern std::string strMsg = "Stranger Things | ";
 
 /**
  * @brief      changeText
@@ -71,6 +71,8 @@ int main(int argc, char **argv) {
     // If we have an argument passed in, set the frequency
     ROS_DEBUG_STREAM("Argument is " << argv[1]);
     freq = atoi(argv[1]);
+  } else {
+    ROS_FATAL_STREAM("No frequency argument was passed.");
   }
 
   /**
