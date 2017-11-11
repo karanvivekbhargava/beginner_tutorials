@@ -35,13 +35,7 @@
  *
  */
 
-#include <sstream>
-#include "ros/ros.h"
-#include "std_msgs/String.h"
-#include "beginner_tutorials/change_text.h"
-
-// Initialize the base string to print
-extern std::string strMsg = "Stranger Things | ";
+#include "talker.hpp"
 
 /**
  * @brief      changeText
