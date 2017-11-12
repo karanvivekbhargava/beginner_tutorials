@@ -22,7 +22,7 @@
  *  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  *  DEALINGS IN THE SOFTWARE.
  *
- *  @file    talker.hpp
+ *  @file    main.cpp
  *  @author  Karan Vivek Bhargava
  *  @copyright MIT License
  *
@@ -31,23 +31,24 @@
  *  @section DESCRIPTION
  *
  *  This program is a part of the beginner tutorials in ROS
- *  It defines the publisher (talker)
+ *  It tests the talker
  *
  */
 
-#ifndef INCLUDE_TALKER_HPP_
-#define INCLUDE_TALKER_HPP_
-#include <sstream>
-#include <string>
-#include "ros/ros.h"
-#include "std_msgs/String.h"
-#include "beginner_tutorials/change_text.h"
+#include <ros/ros.h>
+#include <gtest/gtest.h>
 
-// This was declared to solve global string errors in cpplint
-struct globalString {
-  // Initialize the base string to print
-  std::string strMsg = "Stranger Things | ";
-};
+/**
+ * @brief      main
+ *
+ * @param[in]  argc  The argc
+ * @param      argv  The argv
+ *
+ * @return     Nothing
+ */
+int main(int argc, char** argv) {
+    ros::init(argc, argv, "talkerTest");
 
-#endif  // INCLUDE_TALKER_HPP_
-
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
+}

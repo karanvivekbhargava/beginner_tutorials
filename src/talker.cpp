@@ -40,6 +40,9 @@
 
 #define PI 3.14
 
+// Define the message globally
+globalString s;
+
 /**
  * @brief      changeText
  *
@@ -51,7 +54,7 @@
 bool changeText(beginner_tutorials::change_text::Request& request,
                            beginner_tutorials::change_text::Response& resp) {
   resp.textop = request.textip;
-  strMsg = resp.textop + " | ";
+  s.strMsg = resp.textop + " | ";
   // Warn that the message being published is changed
   ROS_WARN_STREAM("Changing the message being published...");
 
@@ -157,14 +160,15 @@ int main(int argc, char **argv) {
     double theta = w*t;
 
     // Set the origin of the transform
-    transform.setOrigin( tf::Vector3(x, y, z));
+    transform.setOrigin(tf::Vector3(x, y, z));
 
     // Set the orientation
     q.setRPY(0, 0, theta);
     transform.setRotation(q);
 
     // Broadcast the transform
-    br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "world", "talk"));
+    br.sendTransform(tf::StampedTransform(transform,
+      ros::Time::now(), "world", "talk"));
 
     /**
      * This is a message object. You stuff it with data, and then publish it.
@@ -172,7 +176,7 @@ int main(int argc, char **argv) {
     std_msgs::String msg;
 
     std::stringstream ss;
-    ss << strMsg << count;
+    ss << s.strMsg << count;
     msg.data = ss.str();
     ROS_INFO("%s", msg.data.c_str());
 

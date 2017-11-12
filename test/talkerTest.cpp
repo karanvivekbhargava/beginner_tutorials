@@ -22,7 +22,7 @@
  *  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  *  DEALINGS IN THE SOFTWARE.
  *
- *  @file    talker.hpp
+ *  @file    talkerTest.cpp
  *  @author  Karan Vivek Bhargava
  *  @copyright MIT License
  *
@@ -31,23 +31,50 @@
  *  @section DESCRIPTION
  *
  *  This program is a part of the beginner tutorials in ROS
- *  It defines the publisher (talker)
+ *  It tests the talker node
  *
  */
 
-#ifndef INCLUDE_TALKER_HPP_
-#define INCLUDE_TALKER_HPP_
-#include <sstream>
-#include <string>
-#include "ros/ros.h"
-#include "std_msgs/String.h"
+#include <ros/ros.h>
+#include <ros/service_client.h>
+#include <tf/transform_listener.h>
+#include <gtest/gtest.h>
 #include "beginner_tutorials/change_text.h"
 
-// This was declared to solve global string errors in cpplint
-struct globalString {
-  // Initialize the base string to print
-  std::string strMsg = "Stranger Things | ";
-};
+/**
+ * @brief      Tests whether the service exists
+ *
+ * @param[in]  TESTSuite          gtest framework
+ * @param[in]  testServiceExists  Name of the test
+ */
+TEST(TESTSuite, testServiceExists) {
+  // Create node handle
+  ros::NodeHandle n;
+  // Register the client to the service
+  ros::ServiceClient client =
+      n.serviceClient<beginner_tutorials::change_text>("change_text");
+  // Check if the service exist
+  bool exists(client.waitForExistence(ros::Duration(10)));
+  EXPECT_TRUE(exists);
+}
 
-#endif  // INCLUDE_TALKER_HPP_
-
+/**
+ * @brief      Tests whether the service changes the text
+ *
+ * @param[in]  TESTSuite              gtest framework
+ * @param[in]  testChangeTestService  Name of the test
+ */
+TEST(TESTSuite, testChangeTestService) {
+  // Create a node handle
+  ros::NodeHandle n;
+  // Register the client to the service
+  ros::ServiceClient client =
+      n.serviceClient<beginner_tutorials::change_text>("change_text");
+  beginner_tutorials::change_text srv;
+  // Set the input text
+  srv.request.textip = "input";
+  // Call the service
+  client.call(srv);
+  // Check the response
+  EXPECT_STREQ("input", srv.response.textop.c_str());
+}
