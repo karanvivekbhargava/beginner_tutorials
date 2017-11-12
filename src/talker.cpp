@@ -38,6 +38,7 @@
 #include "talker.hpp"
 #include <tf/transform_broadcaster.h>
 
+// Definer value of pi for easy access
 #define PI 3.14
 
 // Define the message globally
