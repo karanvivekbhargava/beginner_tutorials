@@ -109,9 +109,10 @@ int main(int argc, char **argv) {
     // If we have an argument passed in, set the frequency
     ROS_DEBUG_STREAM("Argument is " << argv[1]);
     freq = atoi(argv[1]);
-  } else {
-    ROS_FATAL_STREAM("No frequency argument was passed.");
   }
+  // } else {
+  //   ROS_FATAL_STREAM("No frequency argument was passed.");
+  // }
 
   /**
    * NodeHandle is the main access point to communications with the ROS system.

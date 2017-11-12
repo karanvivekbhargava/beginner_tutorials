@@ -59,6 +59,7 @@ if(CATKIN_ENABLE_TESTING)
   add_dependencies(
     talkerTest
     talker
+    listener
     ${catkin_EXPORTED_TARGETS}
   )
 endif()
